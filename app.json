@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CUI ATD Companion",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "slug": "cui_atd_companion",
     "owner": "njbsyd",
     "orientation": "default",
@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.companion.cui.dev"

@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 
-import { DigitalOceanAPI } from "./APIs";
+import { RenderAPI } from "./APIs";
 import {
   setFreeslots,
   setFreeslotsAvailable,
@@ -19,7 +19,7 @@ async function shouldUpdateDataFromServer() {
       if (!(await NetInfo.fetch()).isInternetReachable) {
         return false;
       }
-      const res = await DigitalOceanAPI.post(`timetable/shouldUpdate`, {
+      const res = await RenderAPI.post(`timetable/shouldUpdate`, {
         lastSyncDate,
       });
       const data = {
@@ -81,7 +81,7 @@ async function updateDataFromServerIfNeeded(setLoadingText) {
 
 async function fetchDataFromMongoDB(URL) {
   try {
-    const res = await DigitalOceanAPI.get(URL);
+    const res = await RenderAPI.get(URL);
     return res.data;
   } catch (e) {
     throw e;

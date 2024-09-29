@@ -24,3 +24,4 @@ Config/FirebaseConfig.js
 .idea/vcs.xml
 /.vscode
 android/
+ios/
