@@ -71,7 +71,7 @@ async function updateDataFromServerIfNeeded(setLoadingText) {
       lastSyncDate
     ) {
       setLoadingText(
-        "Server Connection Timeout...⛔\nProceeding with existing data...",
+        "Server Connection Timeout...⛔\nProceeding with existing data..."
       );
     } else {
       throw new Error("Please! Restart the App or Try Again.");

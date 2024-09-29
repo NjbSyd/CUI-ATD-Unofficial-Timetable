@@ -1,7 +1,7 @@
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { BackgroundImage } from "@rneui/base";
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text, StyleSheet, View, TouchableHighlight } from "react-native";
 
 import Theme from "../Constants/Theme";
 
@@ -12,9 +12,11 @@ const RenderButton = ({
   screenName,
   screenDescription,
   navigation,
+  onPress,
 }) => {
   return (
-    <TouchableOpacity
+    <TouchableHighlight
+      underlayColor={Theme.COLORS.SWITCH_OFF}
       style={[
         styles.button,
         {
@@ -24,6 +26,7 @@ const RenderButton = ({
         },
       ]}
       onPress={() => {
+        onPress();
         navigation.navigate(screenName);
       }}
     >
@@ -68,7 +71,7 @@ const RenderButton = ({
           </Text>
         </View>
       </BackgroundImage>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     marginTop: Theme.ScreenWidth * 0.05,
     borderRadius: 10,
     overflow: "hidden",
-    elevation: 5,
   },
   buttonText: {
     color: "white",

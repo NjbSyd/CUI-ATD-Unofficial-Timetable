@@ -6,6 +6,9 @@ import axios from "axios";
 // export const RenderAPI = axios.create({
 //   baseURL: "https://timetable-scrapper.onrender.com/",
 // });
+// export const DigitalOceanAPI = axios.create({
+//   baseURL: "https://server.cuitimeschedule.tech/",
+// });
 export const DigitalOceanAPI = axios.create({
-  baseURL: "https://server.cuitimeschedule.tech/",
+  baseURL: "http://192.168.1.13:3000/",
 });

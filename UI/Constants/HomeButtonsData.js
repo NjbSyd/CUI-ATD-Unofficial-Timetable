@@ -1,3 +1,5 @@
+import { Alert } from "react-native";
+
 export const HomeButtonsData = [
   {
     iconName: "chalkboard-teacher",
@@ -28,5 +30,6 @@ export const HomeButtonsData = [
     iconName: "calendar-plus",
     screenName: "Freeslots",
     screenDescription: "Find free-slots for arranging extra classes",
+    onPress: () => Alert.alert("Unstable feature!", "Use at your own risk"),
   },
 ];

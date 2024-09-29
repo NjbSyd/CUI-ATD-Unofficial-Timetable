@@ -40,7 +40,7 @@ const GetUsers = async () => {
     const distinctRegistrationNumbers = await GetDistinctValues(
       "RegistrationNumber",
       "UserCredentials",
-      null,
+      null
     );
 
     return await Promise.all(
@@ -54,7 +54,7 @@ const GetUsers = async () => {
           label: user.label,
           image,
         };
-      }),
+      })
     );
   } catch (error) {
     throw error;
@@ -93,7 +93,7 @@ const GetTeachersSchedule = async (teacher) => {
 const GetSubjectsSchedule = async (subject) => {
   try {
     const resultSet = await KnexDB("timetables")
-      .select("_id", "subject", "teacher", "class_name")
+      .select("id", "subject", "teacher", "class_name")
       .where("subject", subject)
       .groupBy("class_name", "teacher")
       .orderBy("teacher");
@@ -130,13 +130,14 @@ const GetTimetableByClassName = async (class_name) => {
   try {
     return await KnexDB("timetables")
       .select(
-        "_id",
+        "id",
         "class_name",
         "class_room",
         "day",
         "subject",
         "teacher",
         "time_slot",
+        "extra"
       )
       .where("class_name", class_name).orderByRaw(`
         CASE day

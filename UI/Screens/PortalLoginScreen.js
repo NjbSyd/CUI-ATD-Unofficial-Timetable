@@ -35,14 +35,14 @@ const LoginScreen = ({ navigation }) => {
       "keyboardDidShow",
       () => {
         setIsKeyboardOpen(true);
-      },
+      }
     );
 
     const keyboardDidHideListener = Keyboard.addListener(
       "keyboardDidHide",
       () => {
         setIsKeyboardOpen(false);
-      },
+      }
     );
 
     return () => {
@@ -55,7 +55,7 @@ const LoginScreen = ({ navigation }) => {
       updateUserCredentialsState(StateDispatcher)
         .then(() => {})
         .catch(null);
-    }, []),
+    }, [])
   );
   const users = useSelector((state) => state.StudentCredentialsSlice.users);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
         "Credentials Not Saved⛔",
         "You opted to NOT save credentials, But it is recommended for ease of use in the future.",
         ["Ok"],
-        { cancelable: true },
+        { cancelable: true }
       );
     }
     const id = username,
@@ -144,6 +144,7 @@ const LoginScreen = ({ navigation }) => {
           style={styles.input}
           mode="outlined"
           activeOutlineColor={Theme.COLORS.MAIN}
+          contextMenuHidden
         />
         <TextInput
           label="Password"

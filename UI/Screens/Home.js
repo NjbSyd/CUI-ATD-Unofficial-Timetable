@@ -20,7 +20,7 @@ const Main = ({ navigation }) => {
       BackHandler.addEventListener("hardwareBackPress", onBackPress);
       return () =>
         BackHandler.removeEventListener("hardwareBackPress", onBackPress);
-    }, []),
+    }, [])
   );
 
   return (
@@ -34,6 +34,7 @@ const Main = ({ navigation }) => {
         style={{
           height: Theme.ScreenHeight * 0.9,
           flex: 1,
+          paddingBottom: Theme.ScreenHeight * 0.1,
         }}
         numColumns={2}
         contentContainerStyle={styles.buttonContainer}
@@ -45,6 +46,7 @@ const Main = ({ navigation }) => {
             screenName={item.screenName}
             screenDescription={item.screenDescription}
             navigation={navigation}
+            onPress={item?.onPress ?? (() => null)}
           />
         )}
       />

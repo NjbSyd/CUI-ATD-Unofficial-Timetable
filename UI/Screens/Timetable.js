@@ -24,7 +24,7 @@ export default function Timetable() {
   const [selection, setSelection] = useState(-1);
   const [selectedClassname, setSelectedClassname] = useState(null);
   const [isClassNameSelected, setIsClassNameSelected] = useState(
-    selectedClassname !== null,
+    selectedClassname !== null
   );
   const [selectedClassData, setSelectedClassData] = useState([]);
   const [selectedClassDayData, setSelectedClassDayData] = useState([]);
@@ -32,8 +32,6 @@ export default function Timetable() {
   // eslint-disable-next-line no-unused-vars
   const [_, setIsKeyboardOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const Dispatch = useDispatch();
-  const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     AsyncStorage.getItem("className")
       .then((item) => {
@@ -48,14 +46,14 @@ export default function Timetable() {
       "keyboardDidShow",
       () => {
         setIsKeyboardOpen(true);
-      },
+      }
     );
 
     const keyboardDidHideListener = Keyboard.addListener(
       "keyboardDidHide",
       () => {
         setIsKeyboardOpen(false);
-      },
+      }
     );
 
     return () => {
@@ -95,26 +93,7 @@ export default function Timetable() {
   }
 
   return (
-    <ScrollView
-      scrollEnabled={false}
-      refreshControl={
-        <RefreshControl
-          refreshing={refreshing}
-          enabled={selectedClassData.length <= 0}
-          progressBackgroundColor="#5a6e98"
-          progressViewOffset={10}
-          colors={["#fff"]}
-          onRefresh={() => {
-            fetchDataFromSQLite(Dispatch, ["sections"])
-              .then(() => {
-                setRefreshing(false);
-              })
-              .catch(null);
-          }}
-        />
-      }
-      contentContainerStyle={styles.container}
-    >
+    <ScrollView scrollEnabled={false} contentContainerStyle={styles.container}>
       <Dropdown
         ref={dropdownRef}
         style={styles.DropdownStyle}
@@ -145,8 +124,8 @@ export default function Timetable() {
               filterDayData,
               isClassNameSelected,
               selection,
-              styles,
-            ),
+              styles
+            )
           )}
         </View>
       )}
@@ -164,13 +143,6 @@ export default function Timetable() {
           <NoSelection message="Pick A Class" />
         )}
       </ScrollView>
-      {/*<View*/}
-      {/*  style={{*/}
-      {/*    display: isKeyboardOpen ? "none" : "flex",*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  <BannerAds />*/}
-      {/*</View>*/}
     </ScrollView>
   );
 }

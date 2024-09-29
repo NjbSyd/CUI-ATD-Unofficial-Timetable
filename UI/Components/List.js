@@ -2,13 +2,22 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import NoResults from "./NoResults";
+import { ClickableText } from "../Components/ClickableText";
+import Theme from "../Constants/Theme";
 
 function renderClassroomBasedItem(item) {
-  const { _id, class_name, day, subject, teacher, class_room, time_slot } =
-    item;
-
+  const {
+    id,
+    class_name,
+    day,
+    subject,
+    teacher,
+    class_room,
+    time_slot,
+    extra,
+  } = item;
   return (
-    <View key={_id} style={styles.outerContainer}>
+    <View key={id} style={styles.outerContainer}>
       <View style={styles.innerTopContainer}>
         <Text style={styles.topBoldText}>{class_name}</Text>
         <Text style={styles.topBoldText}>{day}</Text>
@@ -16,26 +25,39 @@ function renderClassroomBasedItem(item) {
       <View style={styles.innerBottomContainer}>
         <Text style={styles.bottomImportantText}>{subject}</Text>
         {teacher && (
-          <Text style={styles.bottomNormalText}>{teacher.trim()}</Text>
+          <ClickableText
+            style={styles.bottomImportantText2}
+            text={teacher}
+            onPress={() => console.log(teacher)}
+          />
         )}
         <Text style={styles.bottomNormalText}>{class_room}</Text>
         <Text style={styles.bottomNormalText}>{time_slot}</Text>
+        {extra && <Text style={styles.bottomNormalText}>{extra}</Text>}
       </View>
     </View>
   );
 }
 
 function renderTeacherBasedItem(item) {
-  const { _id, class_name, day, subject, class_room, time_slot } = item;
+  const { id, class_name, day, subject, class_room, time_slot } = item;
 
   return (
-    <View key={_id} style={styles.outerContainer}>
+    <View key={id} style={styles.outerContainer}>
       <View style={styles.innerTopContainer}>
-        <Text style={styles.topBoldText}>{class_name}</Text>
+        <ClickableText
+          style={styles.topBoldText}
+          text={class_name}
+          onPress={() => console.log(class_name)}
+        />
         <Text style={styles.topBoldText}>{day}</Text>
       </View>
       <View style={styles.innerBottomContainer}>
-        <Text style={styles.bottomImportantText}>{subject}</Text>
+        <ClickableText
+          style={styles.bottomImportantText}
+          text={subject}
+          onPress={() => null}
+        />
         <Text style={styles.bottomNormalText}>{class_room}</Text>
         <Text style={styles.bottomNormalText}>{time_slot}</Text>
       </View>
@@ -44,16 +66,26 @@ function renderTeacherBasedItem(item) {
 }
 
 function renderSubjectBasedItem(item) {
-  const { _id, teacher, subject, class_name } = item;
+  const { id, teacher, subject, class_name } = item;
 
   return (
-    <View key={_id} style={styles.outerContainer}>
+    <View key={id} style={styles.outerContainer}>
       <View style={styles.innerTopContainer}>
-        <Text style={styles.topBoldText}>{teacher}</Text>
+        <ClickableText
+          text={teacher}
+          onPress={() => {
+            console.log(teacher);
+          }}
+          style={styles.topBoldText}
+        />
       </View>
       <View style={styles.innerBottomContainer}>
-        <Text style={styles.bottomImportantText}>{subject}</Text>
-        <Text style={styles.bottomNormalText}>{class_name}</Text>
+        <ClickableText
+          text={subject}
+          onPress={() => null}
+          style={styles.bottomImportantText}
+        />
+        <Text style={styles.bottomImportantText2}>{class_name}</Text>
       </View>
     </View>
   );
@@ -111,9 +143,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   topBoldText: { fontSize: 18, fontWeight: "bold" },
-  bottomImportantText: { fontSize: 16, color: "red" },
+  bottomImportantText: { fontSize: 16, color: Theme.COLORS.BLACK },
+  bottomImportantText2: { fontSize: 14, color: Theme.COLORS["BLACK-2"] },
   bottomNormalText: {
-    fontSize: 16,
+    fontSize: 12,
+    color: Theme.COLORS["BLACK-1"],
   },
   innerItemText: {
     fontSize: 16,
