@@ -1,9 +1,9 @@
-import { setClassRoom } from "../../Redux/ClassRoomSlice";
-import { setClassNames } from "../../Redux/SectionSlice";
-import { setRegistration } from "../../Redux/StudentCredentialsSlice";
-import { setSubjectNames } from "../../Redux/SubjectSlice";
-import { setTeacherNames } from "../../Redux/TeacherSlice";
-import { setTimeslot } from "../../Redux/TimeslotSlice";
+import { setClassRoom } from "../../Redux/Slices/ClassRoomSlice";
+import { setClassNames } from "../../Redux/Slices/SectionSlice";
+import { setRegistration } from "../../Redux/Slices/StudentCredentialsSlice";
+import { setSubjectNames } from "../../Redux/Slices/SubjectSlice";
+import { setTeacherNames } from "../../Redux/Slices/TeacherSlice";
+import { setTimeslot } from "../../Redux/Slices/TimeslotSlice";
 import {
   GetClassNames,
   GetClassRooms,

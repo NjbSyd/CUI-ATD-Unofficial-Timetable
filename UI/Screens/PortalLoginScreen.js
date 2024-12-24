@@ -22,7 +22,7 @@ import {
   DeleteUserCredentialsFromDB,
   GetUserCredentialsByRegistrationNumber,
 } from "../../BackEnd/KnexDB_Search";
-import { SelectDistintDepartmentNames } from "../../Redux/Selectors";
+import { SelectDistintDepartmentNames } from "../../Redux/Selectors/Selectors";
 import Theme from "../Constants/Theme";
 import { formatInput } from "../Functions/PortalLoginHelpers";
 

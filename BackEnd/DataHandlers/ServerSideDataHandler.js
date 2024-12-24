@@ -2,10 +2,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 
 import { RenderAPI } from "./APIs";
+import { fetchDataFromSQLite } from "./FrontEndDataHandler";
 import {
   setFreeslots,
   setFreeslotsAvailable,
-} from "../../Redux/FreeslotsSlice";
+} from "../../Redux/Slices/FreeslotsSlice";
 import { RemoveLabData } from "../../UI/Functions/UIHelpers";
 import { batchInsertTimetableData, clearTimetableTable } from "../KnexDB";
 
@@ -42,7 +43,7 @@ async function shouldUpdateDataFromServer() {
 }
 
 // Function to update data and sync date
-async function updateDataFromServerIfNeeded(setLoadingText) {
+async function updateDataFromServerIfNeeded(setLoadingText, dispatch) {
   if (setLoadingText === undefined) {
     setLoadingText = () => {};
   }
@@ -59,6 +60,7 @@ async function updateDataFromServerIfNeeded(setLoadingText) {
       // await fakeSleep(100);
       await batchInsertTimetableData(timetableData);
       await AsyncStorage.setItem("lastSyncDate", new Date().toJSON());
+      fetchDataFromSQLite(dispatch, "all").then(null);
     } else {
       setLoadingText("Proceeding with existing data...");
     }

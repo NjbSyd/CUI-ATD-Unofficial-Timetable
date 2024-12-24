@@ -25,3 +25,4 @@ Config/FirebaseConfig.js
 /.vscode
 android/
 ios/
+.env

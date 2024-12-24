@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { fetchDataFromSQLite } from "../../BackEnd/DataHandlers/FrontEndDataHandler";
 import { updateDataFromServerIfNeeded } from "../../BackEnd/DataHandlers/ServerSideDataHandler";
 import { initializeAllDatabasesAndTables } from "../../BackEnd/KnexDB";
 
@@ -22,6 +21,7 @@ export default function SplashScreen({ navigation }) {
       setLoadingText("Loading...");
     };
   }, [focused]);
+
   const animationRef = useRef(null);
   const [initialAnimationDone, setInitialAnimationDone] = useState(false);
   const [loadingText, setLoadingText] = useState("Checking for Updates...");
@@ -31,9 +31,7 @@ export default function SplashScreen({ navigation }) {
     try {
       setLoadingText("Loading...");
       await initializeAllDatabasesAndTables();
-      await updateDataFromServerIfNeeded(setLoadingText);
-      setLoadingText("Setting up the environment...");
-      await fetchDataFromSQLite(StateDispatcher, "all");
+      await updateDataFromServerIfNeeded(setLoadingText, StateDispatcher);
       navigation.navigate("ApplicationEntry");
     } catch (error) {
       navigation.navigate("Error", {
